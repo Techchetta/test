@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brick&Block</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #A10000;
+  --accent: #FFCA00;
+  --bg: #f9f9fb;
+  --text: #222222;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+
+.logo {
+  height: 45px;
+  width: auto;
+  object-fit: cover;
+}
+
+
+.logo:hover {
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 18px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.6);
+  z-index: 1000;
+}
+
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: var(--primary);
+  transition: 0.3s;
+   color: #A10000;
+}
+
+nav a:hover::after {
+  width: 100%;
+   color: #A10000;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #222;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  nav ul {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    padding: 100px 30px;
+    gap: 25px;
+    transition: 0.4s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    display: flex;
+  }
+
+  nav ul.active {
+    right: 0;
+  }
+}
+
+/* overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* HAMBURGER ANIMATION */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+}
+
+.hero-content {
+  z-index: 2;
+  max-width: 700px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+.hero p {
+  margin: 15px 0;
+  opacity: 0.9;
+}
+
+.btn {
+  background: var(--accent);
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* SECTIONS */
+section {
+  padding: 100px 60px;
+}
+
+@media (max-width: 1024px) {
+  section {
+    padding: 80px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 60px 20px;
+  }
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #A10000;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+/* 🔥 3-line clamp */
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;   /* max 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: calc(1.4em * 3); /* ensures minimum 3-line height */
+  line-height: 1.4em;
+  color: #555;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+}
+
+.grid img {
+  width: 100%;
+  border-radius: 16px;
+  transition: 0.4s;
+}
+
+.grid img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materials {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+}
+
+th {
+  background: var(--primary);
+  color: white;
+}
+
+th, td {
+  padding: 18px;
+  text-align: center;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+
+/* Plans */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  background: #eee;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.tab.active {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* MATERIALS */
+.materials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.material-card {
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.material-card:hover {
+  transform: translateY(-5px);
+}
+
+.material-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.material-card h3 {
+  padding: 10px;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* FORM */
+form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 30px;
+}
+
+/* ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 20px;
+
+  }
+
+
+  .logo {
+    height: 38px;
+  }
+}
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<body>
+
+<nav>
+  <img src="images/logo.png" alt="Company Logo" class="logo">
+
+  <!-- Hamburger -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Menu -->
+  <ul id="navMenu">
+    <li><a href="#">Home</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#plans">Plans</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#materials">Materials</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+</nav>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<section class="hero">
+  <video autoplay muted loop>
+    <source src="images/257796.mp4">
+  </video>
+  <div class="hero-content reveal">
+    <h1>Build Your Dream Home</h1>
+    <p>Building Trust. Delivering Strength.</p>
+    <button class="btn">Get Consultation</button>
+  </div>
+</section>
+
+<!-- Construction Process -->
+<section id="process">
+  <h2>Construction Process</h2>
+
+  <div class="cards">
+
+    <div class="card reveal">
+      <i class="fas fa-handshake icon"></i>
+      <h3>Connect with Us</h3>
+      <p class="desc">
+        We start by understanding your needs and vision. Our team connects with you to gather initial ideas and project scope details for a smooth kickoff.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <i class="fas fa-clipboard-list icon"></i>
+      <h3>Define Requirements</h3>
+      <p class="desc">
+        We carefully analyze your requirements and convert them into structured plans. This ensures clarity, accuracy, and a strong foundation for execution.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <i class="fas fa-drafting-compass icon"></i>
+      <h3>Approve Designs</h3>
+      <p class="desc">
+        Our design team presents detailed layouts and 3D visuals. You review and approve every aspect before we move into the construction phase.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <i class="fas fa-chart-line icon"></i>
+      <h3>Live Progress</h3>
+      <p class="desc">
+        Track your project in real-time with regular updates. We ensure transparency at every stage of construction with milestone reporting.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <i class="fas fa-key icon"></i>
+      <h3>Move In</h3>
+      <p class="desc">
+        After final quality checks, we hand over your completed project. Everything is tested and ready for you to move in comfortably.
+      </p>
+    </div>
+
+    <div class="card reveal">
+      <i class="fas fa-shield-alt icon"></i>
+      <h3>Protection</h3>
+      <p class="desc">
+        We provide post-construction support and warranty coverage. Your investment remains protected with our dedicated maintenance services.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="plans">
+  <h2>Plans</h2>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('plan2d')">2D Plans</button>
+    <button class="tab" onclick="showTab('plan3d')">3D Plans</button>
+    <button class="tab" onclick="showTab('structure')">Structural Diagrams</button>
+  </div>
+
+  <!-- 2D Plans -->
+  <div id="plan2d" class="tab-content active">
+    <div class="grid">
+      <img src="images/2d-1.jpg" class="reveal">
+      <img src="images/2d-2.jpg" class="reveal">
+      <img src="images/2d-3.jpg" class="reveal">
+      <img src="images/2d-4.jpg" class="reveal">
+      <img src="images/2d-5.jpg" class="reveal">
+      <img src="images/2d-6.jpg" class="reveal">
+    </div>
+  </div>
+
+  <!-- 3D Plans -->
+  <div id="plan3d" class="tab-content">
+    <div class="grid">
+      <img src="images/3d-1.jpg" class="reveal">
+      <img src="images/3d-2.jpg" class="reveal">
+      <img src="images/3d-3.jpg" class="reveal">
+      <img src="images/3d-4.jpg" class="reveal">
+      <img src="images/3d-5.jpg" class="reveal">
+      <img src="images/3d-6.jpg" class="reveal">
+    </div>
+  </div>
+
+  <!-- Structural Diagrams -->
+  <div id="structure" class="tab-content">
+    <div class="grid">
+      <img src="images/struct-1.jpg" class="reveal">
+      <img src="images/struct-2.jpg" class="reveal">
+      <img src="images/struct-3.jpg" class="reveal">
+      <img src="images/struct-4.jpg" class="reveal">
+      <img src="images/struct-5.jpg" class="reveal">
+      <img src="images/struct-6.jpg" class="reveal">
+    </div>
+  </div>
+
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <img src="https://via.placeholder.com/400" class="reveal">
+    <img src="https://via.placeholder.com/400" class="reveal">
+  </div>
+</section>
+
+<section id="packages">
+  <h2>Packages</h2>
+<div class="table-wrapper">
+  <table class="reveal">
+    <tr><th>Feature</th><th>Standard</th><th>Premium</th><th>Luxury</th></tr>
+    <tr><td>Design</td><td>Basic</td><td>Advanced</td><td>Custom</td></tr>
+    <tr><td>Materials</td><td>Standard</td><td>Branded</td><td>Premium</td></tr>
+    <tr><td>Warranty</td><td>5Y</td><td>8Y</td><td>10Y</td></tr>
+    
+  </table>
+  </div>
+</section>
+
+<section id="materials">
+  <h2>Materials</h2>
+
+  <div class="materials">
+
+    <div class="material-card reveal">
+      <img src="images/work/m1.png" alt="Cement">
+      <h3>Cement</h3>
+    </div>
+
+    <div class="material-card reveal">
+      <img src="images/work/m2.png" alt="Steel">
+      <h3>Steel</h3>
+    </div>
+
+    <div class="material-card reveal">
+      <img src="images/work/m3.png" alt="Tiles">
+      <h3>Tiles</h3>
+    </div>
+
+    <div class="material-card reveal">
+      <img src="images/work/m4.png" alt="Paint">
+      <h3>Paint</h3>
+    </div>
+
+  </div>
+</section>
+
+<section id="support">
+  <h2>Support</h2>
+  <form class="reveal" onsubmit="submitForm(event)">
+    <input placeholder="Name" required>
+    <input placeholder="Phone" required>
+    <input placeholder="Email">
+    <textarea placeholder="Comments"></textarea>
+    <button class="btn">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Premium Construction</p>
+</footer>
+
+<script>
+// Reveal animation
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+// Dummy form
+function submitForm(e){
+  e.preventDefault();
+  alert("Submitted!");
+}
+
+// HAMBURGER ICON
+
+
+// menu toggle FIXED
+function toggleMenu() {
+  const menu = document.getElementById("navMenu");
+  const hamburger = document.querySelector(".hamburger");
+  const overlay = document.getElementById("overlay");
+
+  menu.classList.toggle("active");
+  hamburger.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+function showTab(tabId) {
+  const contents = document.querySelectorAll('.tab-content');
+  const tabs = document.querySelectorAll('.tab');
+
+  contents.forEach(c => c.classList.remove('active'));
+  tabs.forEach(t => t.classList.remove('active'));
+
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+
+</script>
+
+</body>
+</html>
