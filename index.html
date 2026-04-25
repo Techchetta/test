@@ -6,7 +6,7 @@
 <title>Brick&Block</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <style>
 :root {
   --primary: #A10000;
@@ -19,7 +19,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
- font-family: 'Inter', sans-serif;
+ font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -221,7 +221,7 @@ nav a:hover::after {
 
 /* SECTIONS */
 section {
-  padding: 100px 300px;
+  padding: 100px 150px;
 }
 
 @media (max-width: 1024px) {
@@ -238,8 +238,10 @@ section {
 
 h2 {
   font-size: 2.2rem;
-  margin-bottom: 50px;
+  font-weight: bolder;
+  margin-bottom: 60px;
   text-align: center;
+  color: #7e1313;
 }
 
 /* CARDS */
@@ -255,6 +257,28 @@ h2 {
   background: #fff;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   text-align: center;
+}
+
+/* FIXED IMAGE SIZE WITHOUT DISTORTION */
+.card img {
+  width: 100%;
+  height: 100px;    /* fixed height */
+  object-fit:cover;    /* prevents stretching */
+}
+
+/* TEXT ALWAYS AT BOTTOM */
+.card-info {
+  margin-top: auto;     /* pushes it to bottom */
+  padding: 15px;
+}
+
+.card-info .location {
+  font-weight: bold;
+}
+
+.card-info .area {
+  color: #666;
+  font-size: 14px;
 }
 
 .icon {
@@ -315,7 +339,6 @@ table {
   border-radius: 12px;
   overflow: hidden;
   background: rgb(255, 243, 243);
- 
 }
 
 th {
@@ -338,7 +361,7 @@ th, td {
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: center;
+
 }
 
 .feature i {
@@ -356,10 +379,20 @@ th, td {
 }
 
 .package-table span {
-  font-size: 14px;
+  font-size: 19px;
+  font-variant-caps: all-petite-caps;
   color: #7e1313;
 }
 
+.package-table td.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.package-table td.feature span {
+  text-align: left;
+}
 
 /* Plans */
 
@@ -377,11 +410,13 @@ th, td {
   background: #eee;
   border-radius: 6px;
   font-weight: 500;
+    color: #7e1313;
 }
 
 .tab.active {
-  background: #2c3e50;
-  color: #fff;
+  background: #FFCA00;
+  color: #7e1313;
+    font-weight: bold;
 }
 
 .tab-content {
@@ -455,31 +490,72 @@ input, textarea {
   border: 1px solid #ddd;
 }
 
+.form-message {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.form-message.success {
+  color: green;
+}
+
+.form-message.error {
+  color: red;
+}
+
+input.error, textarea.error {
+  border: 1px solid red;
+}
+
 /* FOOTER */
 .footer {
   background: #222;
   color: #fff;
-  padding: 20px;
+  padding: 30px;
 }
 
 .footer-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .footer-logo img {
   height: 50px;
 }
 
-.footer-social a {
-  color: #fff;
-  margin-left: 15px;
-  font-size: 18px;
-  transition: 0.3s;
+.footer-right {
+  text-align: right;
 }
 
-.footer-social a:hover {
+.footer-social {
+  margin-bottom: 8px;
+}
+
+.footer-social a {
+  color: #fff;
+  margin-left: 12px;
+  font-size: 18px;
+}
+
+.footer-contact {
+  margin-top: 5px;
+}
+
+.footer-contact a {
+  display: block; /* forces each to its own line */
+  color: #fff;
+  font-size: 14px;
+  margin-top: 12px;
+  text-decoration: none;
+}
+
+.footer-contact i {
+  margin-right: 6px;
+}
+
+.footer-social a:hover,
+.footer-contact a:hover {
   color: #f4b400;
 }
 
@@ -488,7 +564,6 @@ input, textarea {
   margin-top: 15px;
   font-size: 14px;
 }
-
 /* ANIMATION */
 .reveal {
   opacity: 0;
@@ -507,7 +582,6 @@ input, textarea {
     padding: 15px 20px;
 
   }
-
 
   .logo {
     height: 38px;
@@ -562,7 +636,7 @@ input, textarea {
   <div class="hero-content reveal">
     <h1>Build Your Dream Home</h1>
     <p>Building Trust. Delivering Strength.</p>
-    <button class="btn">Get Consultation</button>
+    <button class="btn" >Get Consultation</button>
   </div>
 </section>
 
@@ -675,7 +749,7 @@ input, textarea {
   <h2>Projects</h2>
   <div class="grid">
 
-    <div class="card reveal">
+    <div class="card">
       <img src="images/work/p1.png" alt="Project 1">
       <div class="card-info">
         <p class="location">Chennai, TN</p>
@@ -683,154 +757,253 @@ input, textarea {
       </div>
     </div>
 
-    <div class="card reveal">
+    <div class="card">
       <img src="images/work/p2.png" alt="Project 2">
       <div class="card-info">
         <p class="location">Bangalore, KA</p>
         <p class="area">950 sqft</p>
       </div>
     </div>
-
   </div>
 </section>
 
+<!-- Table-->
 <section id="packages">
   <h2>Packages</h2>
-<div class="table-wrapper">
- <table class="reveal package-table">
-  <tr>
-    <th>Feature</th>
-    <th>Standard <br><strong>1200 Per sq.ft</strong></th>
-    <th>Premium<br><strong>1500 Per sq.ft</strong></th>
-    <th>Luxury<br><strong>1700 Per sq.ft</strong></th>
-  </tr>
+  <div class="table-wrapper">
+    <table class="reveal package-table">
+      <tr>
+        <th>Feature</th>
+        <th>Standard <br><strong>₹2,499 / sq.ft</strong></th>
+        <th>Premium <br><strong>₹2,699 / sq.ft</strong></th>
+      </tr>
 
-  <tr>
-    <td class="feature">
-      <i class="fas fa-pencil-ruler"></i>
-      <span>Design</span>
-    </td>
+      <!-- Structure -->
+      <tr>
+        <td class="feature"><i class="fas fa-building"></i><span>Steel</span></td>
+        <td>Any ISI brand Fe 550D</td>
+        <td>Kamachi / GBR / ARS / Tata Fe 550D</td>
+      </tr>
 
-    <td>
-      <strong>Basic</strong><br>
-      <span>2D Layout</span>
-    </td>
+      <tr>
+        <td class="feature"><i class="fas fa-industry"></i><span>Cement</span></td>
+        <td>Dalmia / Zuari / Ramco</td>
+        <td>UltraTech / Ramco / Coromandel</td>
+      </tr>
 
-    <td>
-      <strong>Advanced</strong><br>
-      <span>2D + 3D</span>
-    </td>
+      <tr>
+        <td class="feature"><i class="fas fa-layer-group"></i><span>RCC</span></td>
+        <td>Design Mix M20 / M25 or Engineer Recommendation</td>
+        <td>Design Mix M20 / M25 or Engineer Recommendation</td>
+      </tr>
 
-    <td>
-      <strong>Custom</strong><br>
-      <span>Full Design</span>
-    </td>
-  </tr>
+      <tr>
+        <td class="feature"><i class="fas fa-arrows-alt-v"></i><span>Ceiling Height</span></td>
+        <td>9.5 ft (may vary by site)</td>
+        <td>10 ft (may vary by site)</td>
+      </tr>
 
-  <tr>
-    <td class="feature">
-      <i class="fas fa-cubes"></i>
-      <span>Materials</span>
-    </td>
+      <tr>
+        <td class="feature"><i class="fas fa-th-large"></i><span>Blocks</span></td>
+        <td>Red Brick / Fly Ash / AAC</td>
+        <td>Red Brick / Fly Ash / AAC</td>
+      </tr>
 
-    <td>
-      <strong>Standard</strong><br>
-      <span>Local Brands</span>
-    </td>
+      <!-- Kitchen -->
+      <tr>
+        <td class="feature"><i class="fas fa-utensils"></i><span>Kitchen Wall Tiles</span></td>
+        <td>₹45/sq.ft up to 7 ft</td>
+        <td>₹50/sq.ft up to 7 ft</td>
+      </tr>
 
-    <td>
-      <strong>Branded</strong><br>
-      <span>Top Brands</span>
-    </td>
+      <tr>
+        <td class="feature"><i class="fas fa-border-style"></i><span>Countertop</span></td>
+        <td>Granite ₹90/sq.ft</td>
+        <td>Granite ₹90/sq.ft</td>
+      </tr>
 
-    <td>
-      <strong>Premium</strong><br>
-      <span>Imported</span>
-    </td>
-  </tr>
+      <tr>
+        <td class="feature"><i class="fas fa-sink"></i><span>Kitchen Sink</span></td>
+        <td>SS Single Sink (₹2,000)</td>
+        <td>SS Single Sink (₹3,000)</td>
+      </tr>
 
-  <tr>
-    <td class="feature">
-      <i class="fas fa-shield-alt"></i>
-      <span>Warranty</span>
-    </td>
+      <tr>
+        <td class="feature"><i class="fas fa-faucet"></i><span>Tap</span></td>
+        <td>Good Quality</td>
+        <td>Good Quality</td>
+      </tr>
 
-    <td>
-      <strong>5 Years</strong><br>
-      <span>Basic Coverage</span>
-    </td>
+      <!-- Bathroom -->
+      <tr>
+        <td class="feature"><i class="fas fa-toilet"></i><span>Water Closets</span></td>
+        <td>1 Indian + 1 Western</td>
+        <td>2 Western</td>
+      </tr>
 
-    <td>
-      <strong>8 Years</strong><br>
-      <span>Extended</span>
-    </td>
+      <tr>
+        <td class="feature"><i class="fas fa-border-all"></i><span>Wall Tiles</span></td>
+        <td>₹35/sq.ft up to 7 ft</td>
+        <td>₹45/sq.ft up to 10 ft</td>
+      </tr>
 
-    <td>
-      <strong>10 Years</strong><br>
-      <span>Full Coverage</span>
-    </td>
-  </tr>
-</table>
+      <tr>
+        <td class="feature"><i class="fas fa-shower"></i><span>Sanitary & CP</span></td>
+        <td>Up to ₹8,000 (ISI)</td>
+        <td>Up to ₹18,000 (Parryware)</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-tools"></i><span>Pipes</span></td>
+        <td>CPVC/PVC ISI</td>
+        <td>Ashirwad CPVC / ISI PVC</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-door-closed"></i><span>Bathroom Door</span></td>
+        <td>PVC / WPC</td>
+        <td>PVC / WPC</td>
+      </tr>
+
+      <!-- Flooring -->
+      <tr>
+        <td class="feature"><i class="fas fa-th"></i><span>Living & Dining</span></td>
+        <td>Tiles ₹45/sq.ft</td>
+        <td>Tiles ₹50/sq.ft</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-th"></i><span>Rooms & Kitchen</span></td>
+        <td>Tiles ₹45/sq.ft</td>
+        <td>Tiles ₹45/sq.ft</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-border-style"></i><span>Bathroom Flooring</span></td>
+        <td>Anti-skid ₹35/sq.ft</td>
+        <td>Anti-skid ₹35/sq.ft</td>
+      </tr>
+
+      <!-- Doors & Windows -->
+      <tr>
+        <td class="feature"><i class="fas fa-door-open"></i><span>Main Door</span></td>
+        <td>Basic Teak Frame</td>
+        <td>First Quality Teak Frame</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-door-closed"></i><span>Internal Doors</span></td>
+        <td>Flush Door</td>
+        <td>Teak Frame + Flush Door</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-window-maximize"></i><span>Windows</span></td>
+        <td>Aluminium / UPVC</td>
+        <td>UPVC Sliding</td>
+      </tr>
+
+      <!-- Paint -->
+      <tr>
+        <td class="feature"><i class="fas fa-paint-roller"></i><span>Interior Paint</span></td>
+        <td>ISI Emulsion</td>
+        <td>Asian Tractor Emulsion</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-paint-brush"></i><span>Exterior Paint</span></td>
+        <td>ISI Emulsion</td>
+        <td>Asian Ace Emulsion</td>
+      </tr>
+
+      <!-- Electrical -->
+      <tr>
+        <td class="feature"><i class="fas fa-bolt"></i><span>Wires</span></td>
+        <td>Kundan / Orbit</td>
+        <td>Orbit / Finolex</td>
+      </tr>
+
+      <tr>
+        <td class="feature"><i class="fas fa-toggle-on"></i><span>Switches</span></td>
+        <td>Anchor Roma</td>
+        <td>Legrand</td>
+      </tr>
+
+      <!-- Extras -->
+      <tr>
+        <td class="feature"><i class="fas fa-plus-circle"></i><span>Extras</span></td>
+        <td>Basic Inclusions</td>
+        <td>OTS, Filler Slab, Cladding, Waterproofing (2000+ sq.ft)</td>
+      </tr>
+
+      <!-- Storage -->
+      <tr>
+        <td class="feature"><i class="fas fa-archive"></i><span>Lofts & Shelves</span></td>
+        <td>1 Loft + 1 Shelf</td>
+        <td>1 Loft + 1 Shelf</td>
+      </tr>
+
+      <!-- Exclusions -->
+      <tr>
+        <td class="feature"><i class="fas fa-times-circle"></i><span>Exclusions</span></td>
+        <td>Interiors, Carpentry, Sunken Slab</td>
+        <td>Interiors, Carpentry, Sunken Slab</td>
+      </tr>
+
+    </table>
   </div>
 </section>
-
-<section id="materials">
-  <h2>Materials</h2>
-
-  <div class="materials">
-
-    <div class="material-card reveal">
-      <img src="images/work/m1.png" alt="Cement">
-      <h3>Cement</h3>
-    </div>
-
-    <div class="material-card reveal">
-      <img src="images/work/m2.png" alt="Steel">
-      <h3>Steel</h3>
-    </div>
-
-    <div class="material-card reveal">
-      <img src="images/work/m3.png" alt="Tiles">
-      <h3>Tiles</h3>
-    </div>
-
-    <div class="material-card reveal">
-      <img src="images/work/m4.png" alt="Paint">
-      <h3>Paint</h3>
-    </div>
-
-  </div>
-</section>
-
+  <!-- Support-->
 <section id="support">
   <h2>Support</h2>
-  <form class="reveal" onsubmit="submitForm(event)">
-    <input placeholder="Name" required>
-    <input placeholder="Phone" required>
-    <input placeholder="Email">
-    <textarea placeholder="Comments"></textarea>
-    <button class="btn">Submit</button>
+  <form class="reveal" onsubmit="submitForm(event)" id="supportForm">
+    <input id="name" placeholder="Name" required>
+    <input id="phone" placeholder="Phone" required>
+    <input id="email" placeholder="Email">
+    <textarea id="comments" placeholder="Comments"></textarea>
+    <button class="btn" id="submitBtn">Submit</button>
+    <p id="formMessage" class="form-message"></p>
   </form>
 </section>
 
  <!-- Footer -->
 <footer class="footer">
   <div class="footer-top">
+    
     <!-- Left: Logo -->
     <div class="footer-logo">
       <img src="images/logo.png" alt="Premium Construction Logo">
     </div>
 
-    <!-- Right: Social Icons -->
-    <div class="footer-social">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
+    <!-- Right: Social + Contact -->
+    <div class="footer-right">
+
+      <!-- Row 1: Social -->
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+
+      <!-- Row 2: Email -->
+      <div class="footer-contact">
+        <a href="mailto:BricknBlock@gmail.com">
+          <i class="fas fa-envelope"></i> info@BricknBlock
+        </a>
+      </div>
+
+      <!-- Row 3: WhatsApp -->
+      <div class="footer-contact">
+        <a href="https://wa.me/911234567890" target="_blank">
+          <i class="fab fa-whatsapp"></i> +91 12345 67890
+        </a>
+      </div>
+
     </div>
   </div>
 
-  <!-- Bottom: Copyright -->
+  <!-- Bottom: Centered Copyright -->
   <div class="footer-bottom">
     <p>© 2026 Brick & Block Constructions</p>
   </div>
@@ -882,6 +1055,92 @@ function showTab(tabId) {
   document.getElementById(tabId).classList.add('active');
   event.target.classList.add('active');
 }
+
+// Google sheet
+function validateForm(data) {
+  let isValid = true;
+  let errors = {};
+
+  // Phone validation (10 digits)
+  const phoneRegex = /^[0-9]{10}$/;
+  if (!phoneRegex.test(data.phone)) {
+    errors.phone = "Enter valid 10-digit phone number";
+    isValid = false;
+  }
+
+  // Email validation (optional but must be valid if filled)
+  if (data.email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      errors.email = "Enter valid email address";
+      isValid = false;
+    }
+  }
+
+  return { isValid, errors };
+}
+
+function showMessage(message, type) {
+  const msg = document.getElementById("formMessage");
+  msg.textContent = message;
+  msg.className = "form-message " + type;
+}
+
+function clearErrors() {
+  document.querySelectorAll(".error").forEach(el => {
+    el.classList.remove("error");
+  });
+}
+
+function submitForm(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("supportForm");
+  const btn = document.getElementById("submitBtn");
+
+  const data = {
+    name: document.getElementById("name").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    comments: document.getElementById("comments").value.trim()
+  };
+
+  clearErrors();
+  showMessage("", "");
+
+  const { isValid, errors } = validateForm(data);
+
+  if (!isValid) {
+    Object.keys(errors).forEach(field => {
+      document.getElementById(field).classList.add("error");
+    });
+
+    showMessage("Please fix the errors and try again.", "error");
+    return;
+  }
+
+  // Disable button + loading state
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
+
+  fetch("https://script.google.com/macros/s/AKfycbzFp6WtHJvsUJzeJwZUnMjNRIPcWGoPcQPiSfVtVnzs4DwwADUmfC6VK2UgA0kuMpBU/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(() => {
+    showMessage("✅ Submitted successfully!", "success");
+    form.reset();
+  })
+  .catch(() => {
+    showMessage("❌ Submission failed. Try again.", "error");
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = "Submit";
+  });
+}
+
 
 
 </script>
