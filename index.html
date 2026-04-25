@@ -221,7 +221,7 @@ nav a:hover::after {
 
 /* SECTIONS */
 section {
-  padding: 100px 60px;
+  padding: 100px 300px;
 }
 
 @media (max-width: 1024px) {
@@ -273,7 +273,6 @@ h2 {
   -webkit-line-clamp: 3;   /* max 3 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
-
   min-height: calc(1.4em * 3); /* ensures minimum 3-line height */
   line-height: 1.4em;
   color: #555;
@@ -315,25 +314,55 @@ table {
   width: 100%;
   border-radius: 12px;
   overflow: hidden;
-  background: white;
+  background: rgb(255, 243, 243);
+ 
 }
 
 th {
   background: var(--primary);
-  color: white;
+  color: #FFCA00;
+   font-size: 15px;
+
 }
 
 th, td {
   padding: 18px;
+  font-weight: bold;
   text-align: center;
 }
 
 .table-wrapper {
   overflow-x: auto;
 }
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.feature i {
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.package-table td {
+  line-height: 1;
+}
+
+.package-table strong {
+  display: block;
+  font-weight: 600;
+}
+
+.package-table span {
+  font-size: 14px;
+  color: #7e1313;
+}
 
 
 /* Plans */
+
 .tabs {
   display: flex;
   gap: 10px;
@@ -371,7 +400,8 @@ th, td {
 
 .grid img {
   width: 100%;
-  height: 180px;
+  height: fit-content;
+  max-height: 250px;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -426,11 +456,37 @@ input, textarea {
 }
 
 /* FOOTER */
-footer {
-  background: #111;
-  color: #aaa;
+.footer {
+  background: #222;
+  color: #fff;
+  padding: 20px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.footer-social a {
+  color: #fff;
+  margin-left: 15px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  color: #f4b400;
+}
+
+.footer-bottom {
   text-align: center;
-  padding: 30px;
+  margin-top: 15px;
+  font-size: 14px;
 }
 
 /* ANIMATION */
@@ -501,7 +557,7 @@ footer {
 
 <section class="hero">
   <video autoplay muted loop>
-    <source src="images/257796.mp4">
+    <source src="images/banner.mp4">
   </video>
   <div class="hero-content reveal">
     <h1>Build Your Dream Home</h1>
@@ -580,36 +636,36 @@ footer {
   <!-- 2D Plans -->
   <div id="plan2d" class="tab-content active">
     <div class="grid">
-      <img src="images/2d-1.jpg" class="reveal">
-      <img src="images/2d-2.jpg" class="reveal">
-      <img src="images/2d-3.jpg" class="reveal">
-      <img src="images/2d-4.jpg" class="reveal">
-      <img src="images/2d-5.jpg" class="reveal">
-      <img src="images/2d-6.jpg" class="reveal">
+      <img src="images/work/1.jpg" class="reveal">
+      <img src="images/work/1.jpg" class="reveal">
+      <img src="images/work/1.jpg" class="reveal">
+      <img src="images/work/1.jpg" class="reveal">
+      <img src="images/work/1.jpg" class="reveal">
+      <img src="images/work/1.jpg" class="reveal">
     </div>
   </div>
 
   <!-- 3D Plans -->
   <div id="plan3d" class="tab-content">
     <div class="grid">
-      <img src="images/3d-1.jpg" class="reveal">
-      <img src="images/3d-2.jpg" class="reveal">
-      <img src="images/3d-3.jpg" class="reveal">
-      <img src="images/3d-4.jpg" class="reveal">
-      <img src="images/3d-5.jpg" class="reveal">
-      <img src="images/3d-6.jpg" class="reveal">
+     <img src="images/work/2.jpg" class="reveal">
+      <img src="images/work/2.jpg" class="reveal">
+      <img src="images/work/2.jpg" class="reveal">
+      <img src="images/work/2.jpg" class="reveal">
+      <img src="images/work/2.jpg" class="reveal">
+      <img src="images/work/2.jpg" class="reveal">
     </div>
   </div>
 
   <!-- Structural Diagrams -->
   <div id="structure" class="tab-content">
     <div class="grid">
-      <img src="images/struct-1.jpg" class="reveal">
-      <img src="images/struct-2.jpg" class="reveal">
-      <img src="images/struct-3.jpg" class="reveal">
-      <img src="images/struct-4.jpg" class="reveal">
-      <img src="images/struct-5.jpg" class="reveal">
-      <img src="images/struct-6.jpg" class="reveal">
+       <img src="images/work/4.jpg" class="reveal">
+      <img src="images/work/4.jpg" class="reveal">
+      <img src="images/work/4.jpg" class="reveal">
+      <img src="images/work/4.jpg" class="reveal">
+      <img src="images/work/4.jpg" class="reveal">
+      <img src="images/work/4.jpg" class="reveal">
     </div>
   </div>
 
@@ -618,21 +674,103 @@ footer {
 <section id="projects">
   <h2>Projects</h2>
   <div class="grid">
-    <img src="https://via.placeholder.com/400" class="reveal">
-    <img src="https://via.placeholder.com/400" class="reveal">
+
+    <div class="card reveal">
+      <img src="images/work/p1.png" alt="Project 1">
+      <div class="card-info">
+        <p class="location">Chennai, TN</p>
+        <p class="area">1200 sqft</p>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <img src="images/work/p2.png" alt="Project 2">
+      <div class="card-info">
+        <p class="location">Bangalore, KA</p>
+        <p class="area">950 sqft</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section id="packages">
   <h2>Packages</h2>
 <div class="table-wrapper">
-  <table class="reveal">
-    <tr><th>Feature</th><th>Standard</th><th>Premium</th><th>Luxury</th></tr>
-    <tr><td>Design</td><td>Basic</td><td>Advanced</td><td>Custom</td></tr>
-    <tr><td>Materials</td><td>Standard</td><td>Branded</td><td>Premium</td></tr>
-    <tr><td>Warranty</td><td>5Y</td><td>8Y</td><td>10Y</td></tr>
-    
-  </table>
+ <table class="reveal package-table">
+  <tr>
+    <th>Feature</th>
+    <th>Standard <br><strong>1200 Per sq.ft</strong></th>
+    <th>Premium<br><strong>1500 Per sq.ft</strong></th>
+    <th>Luxury<br><strong>1700 Per sq.ft</strong></th>
+  </tr>
+
+  <tr>
+    <td class="feature">
+      <i class="fas fa-pencil-ruler"></i>
+      <span>Design</span>
+    </td>
+
+    <td>
+      <strong>Basic</strong><br>
+      <span>2D Layout</span>
+    </td>
+
+    <td>
+      <strong>Advanced</strong><br>
+      <span>2D + 3D</span>
+    </td>
+
+    <td>
+      <strong>Custom</strong><br>
+      <span>Full Design</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="feature">
+      <i class="fas fa-cubes"></i>
+      <span>Materials</span>
+    </td>
+
+    <td>
+      <strong>Standard</strong><br>
+      <span>Local Brands</span>
+    </td>
+
+    <td>
+      <strong>Branded</strong><br>
+      <span>Top Brands</span>
+    </td>
+
+    <td>
+      <strong>Premium</strong><br>
+      <span>Imported</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="feature">
+      <i class="fas fa-shield-alt"></i>
+      <span>Warranty</span>
+    </td>
+
+    <td>
+      <strong>5 Years</strong><br>
+      <span>Basic Coverage</span>
+    </td>
+
+    <td>
+      <strong>8 Years</strong><br>
+      <span>Extended</span>
+    </td>
+
+    <td>
+      <strong>10 Years</strong><br>
+      <span>Full Coverage</span>
+    </td>
+  </tr>
+</table>
   </div>
 </section>
 
@@ -675,8 +813,27 @@ footer {
   </form>
 </section>
 
-<footer>
-  <p>© 2026 Premium Construction</p>
+ <!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <!-- Left: Logo -->
+    <div class="footer-logo">
+      <img src="images/logo.png" alt="Premium Construction Logo">
+    </div>
+
+    <!-- Right: Social Icons -->
+    <div class="footer-social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+
+  <!-- Bottom: Copyright -->
+  <div class="footer-bottom">
+    <p>© 2026 Brick & Block Constructions</p>
+  </div>
 </footer>
 
 <script>
