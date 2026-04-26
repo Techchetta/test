@@ -43,12 +43,19 @@ body {
 nav {
   position: fixed;
   width: 100%;
-  padding: 18px 60px;
+  padding: 8px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.6);
+
+  /* 🔥 Liquid Glass Effect */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+
   z-index: 1000;
 }
 
@@ -61,8 +68,8 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: var(--text);
-  font-weight: 500;
+  color:#242424d2;
+  font-weight: 900;
   position: relative;
 }
 
@@ -345,7 +352,6 @@ th {
   background: var(--primary);
   color: #FFCA00;
    font-size: 15px;
-
 }
 
 th, td {
@@ -371,6 +377,7 @@ th, td {
 
 .package-table td {
   line-height: 1;
+      color: #4d4d4d;
 }
 
 .package-table strong {
@@ -392,7 +399,9 @@ th, td {
 
 .package-table td.feature span {
   text-align: left;
+      color: #7e1313;
 }
+
 
 /* Plans */
 
@@ -421,6 +430,7 @@ th, td {
 
 .tab-content {
   display: none;
+
 }
 
 .tab-content.active {
@@ -442,37 +452,67 @@ th, td {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* MATERIALS */
-.materials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-}
-
-.material-card {
+/* MATERIALS -- Brand */
+/* BRANDS SECTION */
+#brands {
   text-align: center;
-  border-radius: 12px;
   overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
 }
 
-.material-card:hover {
-  transform: translateY(-5px);
-}
-
-.material-card img {
+/* Slider container */
+.brand-slider {
   width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
 }
 
-.material-card h3 {
-  padding: 10px;
-  margin: 0;
-  font-size: 16px;
+/* Moving track */
+.brand-track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+  animation: scrollBrands 60s linear infinite;
+}
+
+/* Logos */
+.brand-track img {
+  height: 250px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 100%;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.brand-track img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(2.05);
+}
+
+/* Animation */
+@keyframes scrollBrands {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.brand-slider:hover .brand-track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .brand-track {
+    gap: 30px;
+  }
+
+  .brand-track img {
+    height: 45px;
+  }
 }
 
 /* FORM */
@@ -636,7 +676,10 @@ input.error, textarea.error {
   <div class="hero-content reveal">
     <h1>Build Your Dream Home</h1>
     <p>Building Trust. Delivering Strength.</p>
-    <button class="btn" >Get Consultation</button>
+
+    <button class="btn" onclick="document.getElementById('support').scrollIntoView({behavior:'smooth'})">Get Consultation
+    </button>
+    
   </div>
 </section>
 
@@ -771,188 +814,256 @@ input.error, textarea.error {
 <section id="packages">
   <h2>Packages</h2>
   <div class="table-wrapper">
-    <table class="reveal package-table">
-      <tr>
-        <th>Feature</th>
-        <th>Standard <br><strong>₹2,499 / sq.ft</strong></th>
-        <th>Premium <br><strong>₹2,699 / sq.ft</strong></th>
-      </tr>
+<table class="reveal package-table">
+  <tr>
+    <th>Feature</th>
+    <th>Standard <br><strong>₹2,499 / sq.ft</strong></th>
+    <th>Premium <br><strong>₹2,699 / sq.ft</strong></th>
+    <th>Luxury <br><strong>₹2,899 / sq.ft</strong></th>
+  </tr>
 
-      <!-- Structure -->
-      <tr>
-        <td class="feature"><i class="fas fa-building"></i><span>Steel</span></td>
-        <td>Any ISI brand Fe 550D</td>
-        <td>Kamachi / GBR / ARS / Tata Fe 550D</td>
-      </tr>
+  <!-- Structure -->
+  <tr>
+    <td class="feature"><i class="fas fa-building"></i><span>Steel</span></td>
+    <td>Any ISI Fe 550D</td>
+    <td>Kamachi / GBR / ARS / Tata</td>
+    <td>Tata Tiscon / JSW</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-industry"></i><span>Cement</span></td>
-        <td>Dalmia / Zuari / Ramco</td>
-        <td>UltraTech / Ramco / Coromandel</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-industry"></i><span>Cement</span></td>
+    <td>Dalmia / Zuari / Ramco</td>
+    <td>UltraTech / Ramco / Coromandel</td>
+    <td>UltraTech / Ramco / Coromandel</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-layer-group"></i><span>RCC</span></td>
-        <td>Design Mix M20 / M25 or Engineer Recommendation</td>
-        <td>Design Mix M20 / M25 or Engineer Recommendation</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-layer-group"></i><span>RCC Mix</span></td>
+    <td>M20 / M25</td>
+    <td>M20 / M25</td>
+    <td>M25</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-arrows-alt-v"></i><span>Ceiling Height</span></td>
-        <td>9.5 ft (may vary by site)</td>
-        <td>10 ft (may vary by site)</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-arrows-alt-v"></i><span>Ceiling Height</span></td>
+    <td>9.5 ft</td>
+    <td>10 ft</td>
+    <td>10 ft</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-th-large"></i><span>Blocks</span></td>
-        <td>Red Brick / Fly Ash / AAC</td>
-        <td>Red Brick / Fly Ash / AAC</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-th-large"></i><span>Blocks</span></td>
+    <td>Red / Flyash / AAC</td>
+    <td>Red / Flyash / AAC</td>
+    <td>+ Porotherm / Solid</td>
+  </tr>
 
-      <!-- Kitchen -->
-      <tr>
-        <td class="feature"><i class="fas fa-utensils"></i><span>Kitchen Wall Tiles</span></td>
-        <td>₹45/sq.ft up to 7 ft</td>
-        <td>₹50/sq.ft up to 7 ft</td>
-      </tr>
+  <!-- Kitchen -->
+  <tr>
+    <td class="feature"><i class="fas fa-utensils"></i><span>Kitchen Wall Tiles</span></td>
+    <td>₹45/sq.ft (7 ft)</td>
+    <td>₹50/sq.ft (7 ft)</td>
+    <td>₹60/sq.ft (7 ft)</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-border-style"></i><span>Countertop</span></td>
-        <td>Granite ₹90/sq.ft</td>
-        <td>Granite ₹90/sq.ft</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-border-style"></i><span>Granite</span></td>
+    <td>₹90/sq.ft</td>
+    <td>₹90/sq.ft</td>
+    <td>₹120/sq.ft</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-sink"></i><span>Kitchen Sink</span></td>
-        <td>SS Single Sink (₹2,000)</td>
-        <td>SS Single Sink (₹3,000)</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-sink"></i><span>Kitchen Sink</span></td>
+    <td>SS ₹2,000</td>
+    <td>SS ₹3,000</td>
+    <td>SS + Drain ₹9,500</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-faucet"></i><span>Tap</span></td>
-        <td>Good Quality</td>
-        <td>Good Quality</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-toilet"></i><span>Water Closets</span></td>
+    <td>1 Indian + 1 Western</td>
+    <td>2 Western</td>
+    <td>2 Western</td>
+  </tr>
 
-      <!-- Bathroom -->
-      <tr>
-        <td class="feature"><i class="fas fa-toilet"></i><span>Water Closets</span></td>
-        <td>1 Indian + 1 Western</td>
-        <td>2 Western</td>
-      </tr>
+  <!-- Bathroom -->
+  <tr>
+    <td class="feature"><i class="fas fa-border-all"></i><span>Wall Tiles</span></td>
+    <td>₹35/sq.ft (7 ft)</td>
+    <td>₹45/sq.ft (10 ft)</td>
+    <td>₹65/sq.ft (10 ft)</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-border-all"></i><span>Wall Tiles</span></td>
-        <td>₹35/sq.ft up to 7 ft</td>
-        <td>₹45/sq.ft up to 10 ft</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-shower"></i><span>Sanitary</span></td>
+    <td>₹8,000 Any ISI Brand</td>
+    <td>₹18,000 Parryware</td>
+    <td>₹45,000 Jaquar</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-shower"></i><span>Sanitary & CP</span></td>
-        <td>Up to ₹8,000 (ISI)</td>
-        <td>Up to ₹18,000 (Parryware)</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-tools"></i><span>Pipes</span></td>
+    <td>Any ISI Brand</td>
+    <td>Ashirwad</td>
+    <td>Finolex / Supreme</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-tools"></i><span>Pipes</span></td>
-        <td>CPVC/PVC ISI</td>
-        <td>Ashirwad CPVC / ISI PVC</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-door-closed"></i><span>Bathroom Door</span></td>
+    <td>PVC</td>
+    <td>WPC / PVC</td>
+    <td>Laminated WPC</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-door-closed"></i><span>Bathroom Door</span></td>
-        <td>PVC / WPC</td>
-        <td>PVC / WPC</td>
-      </tr>
+  <!-- Flooring -->
+  <tr>
+    <td class="feature"><i class="fas fa-th"></i><span>Living</span></td>
+    <td>₹45 Tiles</td>
+    <td>₹50 Tiles</td>
+    <td>₹90 Large Tiles</td>
+  </tr>
 
-      <!-- Flooring -->
-      <tr>
-        <td class="feature"><i class="fas fa-th"></i><span>Living & Dining</span></td>
-        <td>Tiles ₹45/sq.ft</td>
-        <td>Tiles ₹50/sq.ft</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-th"></i><span>Rooms</span></td>
+    <td>₹45 Tiles</td>
+    <td>₹45 Tiles</td>
+    <td>₹90 Large Tiles</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-th"></i><span>Rooms & Kitchen</span></td>
-        <td>Tiles ₹45/sq.ft</td>
-        <td>Tiles ₹45/sq.ft</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-border-style"></i><span>Bathroom Floor</span></td>
+    <td>₹35</td>
+    <td>₹35</td>
+    <td>₹60</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-border-style"></i><span>Bathroom Flooring</span></td>
-        <td>Anti-skid ₹35/sq.ft</td>
-        <td>Anti-skid ₹35/sq.ft</td>
-      </tr>
+  <!-- Doors -->
+  <tr>
+    <td class="feature"><i class="fas fa-door-open"></i><span>Main Door</span></td>
+    <td>Basic Teak</td>
+    <td>Teak</td>
+    <td>Teak 8 ft</td>
+  </tr>
 
-      <!-- Doors & Windows -->
-      <tr>
-        <td class="feature"><i class="fas fa-door-open"></i><span>Main Door</span></td>
-        <td>Basic Teak Frame</td>
-        <td>First Quality Teak Frame</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-door-closed"></i><span>Internal Doors</span></td>
+    <td>Flush</td>
+    <td>Teak + Flush</td>
+    <td>Premium Flush</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-door-closed"></i><span>Internal Doors</span></td>
-        <td>Flush Door</td>
-        <td>Teak Frame + Flush Door</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-window-maximize"></i><span>Windows</span></td>
+    <td>Aluminium</td>
+    <td>UPVC</td>
+    <td>UPVC + Mesh</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-window-maximize"></i><span>Windows</span></td>
-        <td>Aluminium / UPVC</td>
-        <td>UPVC Sliding</td>
-      </tr>
+  <!-- Paint -->
+  <tr>
+    <td class="feature"><i class="fas fa-paint-roller"></i><span>Interior Paint</span></td>
+    <td>Any ISI Brand</td>
+    <td>Asian Tractor</td>
+    <td>Asian Premium</td>
+  </tr>
 
-      <!-- Paint -->
-      <tr>
-        <td class="feature"><i class="fas fa-paint-roller"></i><span>Interior Paint</span></td>
-        <td>ISI Emulsion</td>
-        <td>Asian Tractor Emulsion</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-paint-brush"></i><span>Exterior Paint</span></td>
+    <td>Any ISI Brand</td>
+    <td>Asian Ace</td>
+    <td>Apex Weatherproof</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-paint-brush"></i><span>Exterior Paint</span></td>
-        <td>ISI Emulsion</td>
-        <td>Asian Ace Emulsion</td>
-      </tr>
+  <!-- Electrical -->
+  <tr>
+    <td class="feature"><i class="fas fa-bolt"></i><span>Wires</span></td>
+    <td>Kundan / Orbit</td>
+    <td>Orbit / Finolex</td>
+    <td>Finolex FRLSH</td>
+  </tr>
 
-      <!-- Electrical -->
-      <tr>
-        <td class="feature"><i class="fas fa-bolt"></i><span>Wires</span></td>
-        <td>Kundan / Orbit</td>
-        <td>Orbit / Finolex</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-toggle-on"></i><span>Switches</span></td>
+    <td>Anchor Roma</td>
+    <td>Legrand</td>
+    <td>GM</td>
+  </tr>
 
-      <tr>
-        <td class="feature"><i class="fas fa-toggle-on"></i><span>Switches</span></td>
-        <td>Anchor Roma</td>
-        <td>Legrand</td>
-      </tr>
+  <!-- Extras -->
+  <tr>
+    <td class="feature"><i class="fas fa-water"></i><span>Tank</span></td>
+    <td>-</td>
+    <td>500L Sintex</td>
+    <td>2000L Sintex</td>
+  </tr>
 
-      <!-- Extras -->
-      <tr>
-        <td class="feature"><i class="fas fa-plus-circle"></i><span>Extras</span></td>
-        <td>Basic Inclusions</td>
-        <td>OTS, Filler Slab, Cladding, Waterproofing (2000+ sq.ft)</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-bars"></i><span>Railing</span></td>
+    <td>Staircase</td>
+    <td>Staircase</td>
+    <td>SS Glass</td>
+  </tr>
 
-      <!-- Storage -->
-      <tr>
-        <td class="feature"><i class="fas fa-archive"></i><span>Lofts & Shelves</span></td>
-        <td>1 Loft + 1 Shelf</td>
-        <td>1 Loft + 1 Shelf</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-shield-alt"></i><span>Waterproofing</span></td>
+    <td>-</td>
+    <td>Free (>2000 sqft)</td>
+    <td>Free (>2000 sqft)</td>
+  </tr>
 
-      <!-- Exclusions -->
-      <tr>
-        <td class="feature"><i class="fas fa-times-circle"></i><span>Exclusions</span></td>
-        <td>Interiors, Carpentry, Sunken Slab</td>
-        <td>Interiors, Carpentry, Sunken Slab</td>
-      </tr>
+  <tr>
+    <td class="feature"><i class="fas fa-archive"></i><span>Lofts</span></td>
+    <td>5 ft</td>
+    <td>5 ft</td>
+    <td>10 ft</td>
+  </tr>
 
-    </table>
+  <!-- Exclusions -->
+  <tr>
+    <td class="feature"><i class="fas fa-times-circle"></i><span>Exclusions</span></td>
+<td style="color:rgb(184, 5, 5);">Interiors, Carpentry</td>
+<td style="color:rgb(184, 5, 5);">Interiors, Carpentry</td>
+<td style="color:rgb(184, 5, 5);">Interiors, Carpentry</td>
+  </tr>
+
+  </table>
   </div>
 </section>
+
+<!--Brands-->
+<section id="brands">
+  <h2>Our Trusted Brands</h2>
+
+  <div class="brand-slider">
+    <div class="brand-track">
+
+      <!-- 6 Logos -->
+      <img src="images/work/m1.png" alt="UltraTech">
+      <img src="images/work/m2.png" alt="Tata Tiscon">
+      <img src="images/work/m3.png" alt="JSW Steel">
+      <img src="images/work/m4.png" alt="Ramco Cement">
+
+            <img src="images/work/m1.png" alt="UltraTech">
+      <img src="images/work/m2.png" alt="Tata Tiscon">
+      <img src="images/work/m3.png" alt="JSW Steel">
+      <img src="images/work/m4.png" alt="Ramco Cement">
+
+            <img src="images/work/m1.png" alt="UltraTech">
+      <img src="images/work/m2.png" alt="Tata Tiscon">
+      <img src="images/work/m3.png" alt="JSW Steel">
+      <img src="images/work/m4.png" alt="Ramco Cement">
+
+            <img src="images/work/m1.png" alt="UltraTech">
+      <img src="images/work/m2.png" alt="Tata Tiscon">
+      <img src="images/work/m3.png" alt="JSW Steel">
+      <img src="images/work/m4.png" alt="Ramco Cement">
+  
+
+    </div>
+  </div>
+</section>
+
   <!-- Support-->
 <section id="support">
   <h2>Support</h2>
